@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conter Application
-    </title>
-    <link rel="stylesheet" href="style.css">
-    <script
-      type="text/javascript"
-      src="http://code.jquery.com/jquery-latest.js"
-    ></script>
-</head>
-<body>
-  <div class="container-card">
-    <h1>Counter Application</h1>
-    <div class="counter-display" id="counterDisplay">0</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu Hover Effects on Mousemove</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <ul>
+      <li><a href="#">Men</a><img class="images" src="quaid-e-azam-1024 (1).jpg" /></li>
+      <li><a href="#">Women</a><img class="images" src="benazir-bhutto-6.jpg" /></li>
+      <li><a href="#">Kids</a><img class="images" src="https://tse4.mm.bing.net/th?id=OIP._IMAMI_GZSBlt8KS5i4Q3wHaEo&pid=Api&P=0&h=220" /></li>
+      <li><a href="#">Mobile</a><img class="images" src="https://tse2.mm.bing.net/th?id=OIP.-fSU8A-CU2QIgZbZ3CnNRwAAAA&pid=Api&P=0&h=220" /></li>
+      <li><a href="#">Watch</a><img class="images" src="watch.jpg" /></li>
+    </ul>
+    <script>
+      let images = document.querySelectorAll('.images');
 
-  <div class="button-container">
-    <button id="incrementBtn" class="blue-Btn">+</button>
-    <button id="decrementBtn" class="blue-Btn">_</button>
-  </div>
-    <button id="resetBtn">Reset</button>
+      function showImage(e) {
+        for (var i = 0; i < images.length; i++) {
+           x = e.pageX;
+           y = e.pageY;
+          images[i].style.transform = `translate(${x}px, ${y}px)`;
+        }
+      }
 
-
-
-  </div>
-    <script src="script.js"></script>
-</body>
+      document.addEventListener('mousemove', showImage);
+    </script>
+  </body>
 </html>
+
