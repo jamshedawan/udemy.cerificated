@@ -1,31 +1,36 @@
-document.getElementById("incrementBtn").addEventListener('click',incrementCounter);
-document.getElementById("decrementBtn").addEventListener('click',decrementCounter);
-document.getElementById("resetBtn").addEventListener('click',resetCounter);
+window.addEventListener("load", checkInternetConnection);
 
-let counterDisplay = document.getElementById("counterDisplay");
-let counterValue = 0;
+function checkInternetConnection() {
+  const statusText = document.getElementById("statusText");
+  const ipAdressText = document.getElementById("IP AdresssText");
+  const NetworkStrengthText = document.getElementById("NetworkStrengthText");
 
+  statusText.textContent = 'Checking....';
 
-function updateCounterDisplay(){
-    counterDisplay.textContent = counterValue;
-}
+  if (navigator.onLine) {
+    fetch( 'https://api.ipify.org?format=json')
+    .then((response) => response.json())
+    .then((data) => {
+        NetworkStrengthText.textContent = data.ip;
+        statusText.textContent = "Connected";
 
+        const connection = navigator.connection;
 
-function incrementCounter(){
-   counterValue++;
-   updateCounterDisplay();
-}
+        const NetworkStrength = connection
+            ? connection.downlink + "Mbps"
+            : "Unknown";
+        NetworkStrengthText.textContent = NetworkStrength;
+    })
+    .catch(() => {
+        statusText.textContent = "Disconnected";
+        ipAdressText.textContent = "-";
+        NetworkStrengthText.textContent = "-";
+    });
 
-function decrementCounter(){
- if(counterValue >0){
-    counterValue--;
-    updateCounterDisplay();
- }
-    
-}
-
-function resetCounter(){
-  counterValue = 0;
-  updateCounterDisplay();
+  } else {
+    statusText.textContent = "Disconnected";
+    ipAdressText.textContent = "-";
+    NetworkStrengthText.textContent = "-";
+  }
 }
 
