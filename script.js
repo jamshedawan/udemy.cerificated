@@ -1,24 +1,31 @@
-let input = document.getElementById("inputBox");
-let buttons = document.querySelectorAll("button");
+document.getElementById("incrementBtn").addEventListener('click',incrementCounter);
+document.getElementById("decrementBtn").addEventListener('click',decrementCounter);
+document.getElementById("resetBtn").addEventListener('click',resetCounter);
 
-let string = "";
-let arr = Array.from(buttons);
-arr.forEach((button) => {
-  button.addEventListener("click", (e) => {
-    if (e.target.innerHTML == "=") {
-      string = eval(string);
-      input.value = string;
-    } else if (e.target.innerHTML == "AC") {
-      string = "";
-      input.value = string;
-    }
-    else if(e.target.innerHTML == 'DEL'){
-        string = string.substring(0, string.length-1);
-        input.value = string;
-    }
-    else {
-      string += e.target.innerHTML;
-      input.value = string;
-    }
-  });
-});
+let counterDisplay = document.getElementById("counterDisplay");
+let counterValue = 0;
+
+
+function updateCounterDisplay(){
+    counterDisplay.textContent = counterValue;
+}
+
+
+function incrementCounter(){
+   counterValue++;
+   updateCounterDisplay();
+}
+
+function decrementCounter(){
+ if(counterValue >0){
+    counterValue--;
+    updateCounterDisplay();
+ }
+    
+}
+
+function resetCounter(){
+  counterValue = 0;
+  updateCounterDisplay();
+}
+
